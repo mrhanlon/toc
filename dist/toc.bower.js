@@ -43,12 +43,13 @@ $.fn.toc = function(options) {
     }
     timeout = setTimeout(function() {
       var top = $(window).scrollTop(),
+        windowHeight = $(window).height(),
         highlighted, closest = Number.MAX_VALUE, index = 0,
         offsets = headingOffsets();
 
       for (var i = 0, c = offsets.length; i < c; i++) {
         var currentClosest = Math.abs(offsets[i] - top);
-        if (currentClosest < closest) {
+        if (currentClosest < closest && offsets[i] < (top + windowHeight)) {
           index = i;
           closest = currentClosest;
         }
