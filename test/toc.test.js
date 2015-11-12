@@ -31,7 +31,7 @@ suite('toc', function() {
       assert.equal($('.toc ul').length, 1);
     });
   });
-  
+
   suite('anchor id formatting', function() {
     test('should verbose ids by default', function() {
       assert.equal($('.toc ul a').length, 0);
@@ -44,10 +44,10 @@ suite('toc', function() {
       assert.equal($('#fixture').find('h2').eq(1).prev().attr('id'), 'toc-sub-heading-2');
     });
 
-   
+
     test('should be able to use custom id generator', function() {
       assert.equal($(window).scrollTop(), 0);
-      
+
       $('.toc').toc({
         container: '#fixture',
         anchorName: function (i, heading, prefix) {
@@ -83,8 +83,7 @@ suite('toc', function() {
       setTimeout(function(){
         var elOffset = $('#toc-page-title-2').offset().top;
         var windowTop = $(window).scrollTop();
-        assert.equal(405, elOffset);
-        // assert.ok((windowTop <= elOffset + 5 && windowTop >= elOffset - 5));
+        assert.equal(windowTop, ~~(elOffset));
         done();
       }, 410);
     });
@@ -97,7 +96,7 @@ suite('toc', function() {
       });
 
       $(window).scrollTop(~~($('#toc-page-title-2').offset().top + 100));
-      
+
       setTimeout(function(){
         assert.ok($('.toc ul li:eq(1)').hasClass('toc-active'));
         done();
