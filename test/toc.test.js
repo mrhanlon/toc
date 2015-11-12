@@ -95,10 +95,11 @@ suite('toc', function() {
         container: '#fixture'
       });
 
+      assert.equal(0, $('.toc-active').length);
       $(window).scrollTop(~~($('#toc-page-title-2').offset().top + 100));
 
       setTimeout(function(){
-        assert.ok($('.toc ul li:eq(1)').hasClass('toc-active'));
+        assert.ok($('.toc-active').length, 1);
         done();
       }, 110);
     });
